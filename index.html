@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FunOFile-My Blog</title>
+	<link rel="icon" href="Images/F (3).png" sizes="16X16">
+	<link rel="stylesheet" href="CSS/funofilestyle.css">
+	<style>
+	option{
+	background-color:"white";}
+	</style>
+	
+	
+  </head>
+  
+  <body>
+	<h2>Guess The Color</h2>
+	<h3>I have selected a random color from the list.<br> See if you can guess it.</h3>
+	<form id="color_guess_form"> 
+	
+    <label for="guessField">Choose the color I selected: </label> 
+    <select name="guesscolorField" id="guesscolorField" onchange="checkColor(this)">
+	<option id="option1" value="option1">Color1</option>
+	<option id="option2" value="option2">Color2</option>
+	<option id="option3" value="option3">Color3</option>
+	<option id="option4" value="option4">Color4</option>
+	<option id="option5" value="option5">Color5</option>
+	</select>
+    <p id="hidden_para_color" style="color:white;"></p>
+	
+	Click on Restart Game to start again
+	<button type = "button" value ="Refresh" onclick="refreshPage()">Restart Game</button>
+	</form>
+	
+	<script>
+	var bgcolor1 = '',bgcolor2 = '',bgcolor3 = '',bgcolor4 = '',bgcolor5 = '';
+	r=Math.floor(Math.random()*255);
+	g=Math.floor(Math.random()*255);
+	b=Math.floor(Math.random()*255);
+	bgcolor1="rgb("+r+", "+g+", "+b+")";
+	var x = document.getElementById("guesscolorField").options.namedItem("option1");
+	x.style.setProperty("background-color",bgcolor1);
+	r=Math.floor(Math.random()*255);
+	g=Math.floor(Math.random()*255);
+	b=Math.floor(Math.random()*255);
+	bgcolor2="rgb("+r+", "+g+", "+b+")";
+	var x = document.getElementById("guesscolorField").options.namedItem("option2");
+	x.style.setProperty("background-color",bgcolor2);
+	r=Math.floor(Math.random()*255);
+	g=Math.floor(Math.random()*255);
+	b=Math.floor(Math.random()*255);
+	bgcolor3="rgb("+r+", "+g+", "+b+")";
+	var x = document.getElementById("guesscolorField").options.namedItem("option3");
+	x.style.setProperty("background-color",bgcolor3);
+	r=Math.floor(Math.random()*255);
+	g=Math.floor(Math.random()*255);
+	b=Math.floor(Math.random()*255);
+	bgcolor4="rgb("+r+", "+g+", "+b+")";
+	var x = document.getElementById("guesscolorField").options.namedItem("option4");
+	x.style.setProperty("background-color",bgcolor4);
+	r=Math.floor(Math.random()*255);
+	g=Math.floor(Math.random()*255);
+	b=Math.floor(Math.random()*255);
+	bgcolor5="rgb("+r+", "+g+", "+b+")";
+	var x = document.getElementById("guesscolorField").options.namedItem("option5");
+	x.style.setProperty("background-color",bgcolor5);
+	
+    
+    var bgcolors=[bgcolor1,bgcolor2,bgcolor3,bgcolor4,bgcolor5];
+	var randomColor=bgcolors[Math.floor(Math.random()*5)];
+
+
+	var guesscolor=0,guessColorFlag=0;	
+	
+	function checkColor(obj){
+	if(guessColorFlag==0){
+	var sel_option=obj.options[obj.selectedIndex];
+		sel_color=window.getComputedStyle(sel_option,null).getPropertyValue("background-color");
+		document.getElementById("hidden_para_color").style.backgroundColor=sel_color;
+		if(sel_color==randomColor){
+			guesscolor++;
+			document.getElementById("hidden_para_color").innerHTML="CONGRATULATIONS!!! YOU GUESSED THE COLOR RIGHT IN "+guesscolor+ " GUESS";
+			guessColorFlag=1;}
+		else{
+			guesscolor++;
+			document.getElementById("hidden_para_color").innerHTML="OOPS SORRY! TRY AGAIN ";
+			}
+	}	
+	else{
+	document.getElementById("hidden_para_color").innerHTML="YOU ALREADY GUESSED THE COLOR CORRECTLY."; 
+	}}
+	function refreshPage(){
+	location.reload();}	
+	</script>
+  </body>
+</html>
